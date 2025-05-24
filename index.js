@@ -9,18 +9,37 @@ if (octokit) {
     console.log(red("Octokit is not ready"));
 }
 
-let response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+export default async function pull_request_data(link) {
+  // not in the proper format for now 
+  let response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
   owner: 'TuringLang',
   repo: 'turinglang.github.io',
   pull_number: 123,
   headers: {
     'X-GitHub-Api-Version': '2022-11-28'
   }
+  });
+}
+
+
+
+// let response2 = await octokit.request('GET https://api.github.com/repos/TuringLang/turinglang.github.io/pulls/123');
+
+
+export default async function pr_committ(params) {
+  const response_pr_commits = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', {
+  owner: 'TuringLang',
+  repo: 'DynamicPPL.jl',
+  pull_number: 346,
+  headers: {
+    'X-GitHub-Api-Version': '2022-11-28'
+  }
 });
 
-if (response) {
-    console.log(blue("Response is ready"));
-    console.log((response));
-} else {
-    console.log(red("Response is not ready"));
+  
+}
+
+
+if (response_pr_commits){
+  console.log(response_pr_commits);
 }
