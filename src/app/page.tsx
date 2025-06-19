@@ -16,6 +16,7 @@ export default function Page() {
           >
             Start Reviewing
           </button>
+          <p>description</p>
         </div>
       </div>
     </>
